@@ -18,12 +18,12 @@ export const InfiniteScroll: React.FC = () => {
       <div className="scroll-container">
         <motion.div
           className="scroll-track"
-          animate={{ x: [0, -1500] }}
+          animate={{ x: [0, -2720] }}
           transition={{
             x: {
               repeat: Infinity,
-              repeatType: "loop" as const,
-              duration: 30,
+              repeatType: "loop",
+              duration: 40,
               ease: "linear",
             },
           }}

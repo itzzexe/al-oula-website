@@ -6,6 +6,13 @@ import { Send } from 'lucide-react';
 export const ContactForm: React.FC = () => {
   const { lang } = useLanguage();
   const t = translations[lang] as typeof translations['ar'];
+  const [submitted, setSubmitted] = React.useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000); // Reset after 3 seconds
+  };
 
   return (
     <section className={`contact-form-section ${lang === 'ar' ? 'rtl' : 'ltr'}`}>
@@ -30,32 +37,42 @@ export const ContactForm: React.FC = () => {
               {t.contactDesc}
             </motion.p>
 
-            <form className="main-form">
-              <div className="input-row">
-                <div className="input-group">
-                  <input type="text" placeholder={t.namePlace} className="neu-inset" />
-                </div>
-                <div className="input-group">
-                  <input type="email" placeholder={t.emailPlace} className="neu-inset" />
-                </div>
-              </div>
-              <div className="input-group">
-                <textarea placeholder={t.msgPlace} className="neu-inset" rows={6}></textarea>
-              </div>
-              <motion.button
-                type="button"
-                className="btn-primary form-btn"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="success-message"
+                style={{ textAlign: 'center', padding: '40px', color: 'var(--soft-gold)', fontWeight: 'bold', fontSize: '1.2rem' }}
               >
-                <span>{t.send}</span>
-                <Send size={18} />
-              </motion.button>
-            </form>
+                {lang === 'ar' ? 'تم استلام رسالتك بنجاح! شكراً لك.' : 'Your message has been received! Thank you.'}
+              </motion.div>
+            ) : (
+              <form className="main-form" onSubmit={handleSubmit}>
+                <div className="input-row">
+                  <div className="input-group">
+                    <input type="text" placeholder={t.namePlace} className="neu-inset" required />
+                  </div>
+                  <div className="input-group">
+                    <input type="email" placeholder={t.emailPlace} className="neu-inset" required />
+                  </div>
+                </div>
+                <div className="input-group">
+                  <textarea placeholder={t.msgPlace} className="neu-inset" rows={6} required></textarea>
+                </div>
+                <motion.button
+                  type="submit"
+                  className="btn-primary form-btn"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <span>{t.send}</span>
+                  <Send size={18} />
+                </motion.button>
+              </form>
+            )}
           </div>
         </div>
       </div>
-
     </section>
   );
 };

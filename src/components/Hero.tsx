@@ -15,6 +15,10 @@ export const Hero: React.FC = () => {
       origin: { y: 0.6 },
       colors: ['#D4AF37', '#F5E6D3', '#FFFFFF']
     });
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -55,9 +59,9 @@ export const Hero: React.FC = () => {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
-            style={{ marginTop: '40px' }}
+            style={{ marginTop: '40px', width: '100%', display: 'flex', justifyContent: 'center' }}
           >
-            <Logo size={800} variant={2} />
+            <Logo size="min(800px, 90vw)" variant={2} />
           </motion.div>
         </div>
       </div>
