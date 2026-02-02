@@ -21,7 +21,7 @@ export const Preloader: React.FC = () => {
                     transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                     <div className="preloader-content">
-                        <Logo size={150} />
+                        <Logo size={300} />
                         <motion.h2
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
