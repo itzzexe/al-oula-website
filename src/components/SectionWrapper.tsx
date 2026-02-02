@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
 interface SectionWrapperProps {
@@ -7,7 +7,7 @@ interface SectionWrapperProps {
     className?: string;
 }
 
-export const SectionWrapper: React.FC<SectionWrapperProps> = ({ children, id, className }) => {
+export const SectionWrapper: FC<SectionWrapperProps> = ({ children, id, className }) => {
     return (
         <motion.div
             id={id}

@@ -1,8 +1,8 @@
-import React, { Suspense } from 'react';
+import { Suspense, type FC } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, MeshDistortMaterial, useTexture } from '@react-three/drei';
+import { OrbitControls, Float, useTexture } from '@react-three/drei';
 
-const Box: React.FC = () => {
+const Box: FC = () => {
     const texture = useTexture('/packaging.png');
 
     return (
@@ -15,7 +15,7 @@ const Box: React.FC = () => {
     );
 };
 
-export const Product3D: React.FC = () => {
+export const Product3D: FC = () => {
     return (
         <div style={{ height: '500px', width: '100%', cursor: 'grab' }}>
             <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
